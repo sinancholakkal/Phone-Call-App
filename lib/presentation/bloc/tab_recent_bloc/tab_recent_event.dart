@@ -6,3 +6,5 @@ class ExpandedIndexChangingEvent extends TabRecentEvent{
   int? expandedIndex;
   ExpandedIndexChangingEvent({required this.expandedIndex});
 }
+
+class GetCallLogsEvent extends TabRecentEvent{}

@@ -5,6 +5,7 @@ import 'package:phone/presentation/bloc/tab_recent_bloc/tab_recent_bloc.dart';
 import 'package:phone/presentation/pages/screen_home/screen_home.dart';
 import 'package:phone/presentation/pages/tab_recent/tab_recent.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       ],
       
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData.dark().copyWith(
         // Customize dark theme properties
         scaffoldBackgroundColor: Colors.black, // Background color
