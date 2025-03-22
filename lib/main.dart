@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:phone/presentation/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:phone/presentation/bloc/tab_recent_bloc/tab_recent_bloc.dart';
 import 'package:phone/presentation/pages/screen_home/screen_home.dart';
+import 'package:phone/presentation/pages/tab_recent/tab_recent.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => HomeScreenBloc()),
+        BlocProvider(create: (context) => TabRecentBloc()),
       ],
       
       child: MaterialApp(
