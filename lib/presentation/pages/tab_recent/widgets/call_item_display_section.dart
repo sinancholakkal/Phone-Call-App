@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:phone/presentation/bloc/tab_recent_bloc/tab_recent_bloc.dart';
 import 'package:phone/presentation/pages/tab_recent/widgets/expanded_items.dart';
+import 'package:phone/presentation/widgets/circular_indicator_widget.dart';
 import 'package:phone/presentation/widgets/item_card_widget.dart';
 import 'package:phone/presentation/widgets/text_widget.dart';
 
@@ -58,12 +59,7 @@ class CallItemsDisplaySection extends StatelessWidget {
             log(olderText.toString());
           }
           if (state is GetCallLogsLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.white,
-                strokeWidth: 2,
-              ),
-            );
+            return CircularIndicatorWidget();
           } else if (state is GetCallLogsLoadedState ||
               state is ExpandedIndexChangedState) {
             return ListView.separated(
@@ -144,3 +140,4 @@ class CallItemsDisplaySection extends StatelessWidget {
     );
   }
 }
+

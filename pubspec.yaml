@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: '>=3.7.2 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -42,6 +42,8 @@ dependencies:
   get: ^4.7.2
   direct_caller_sim_choice: ^1.0.5
   phone_state: ^2.1.1
+  flutter_contacts: ^1.1.9+2
+  azlistview_plus: ^3.0.0
 
 dev_dependencies:
   flutter_test:

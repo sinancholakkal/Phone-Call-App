@@ -23,7 +23,6 @@ class ItemCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        radius: 22,
         backgroundColor: Colors.primaries[index % Colors.primaries.length],
         child: const Icon(Icons.person, size: 32),
       ),
@@ -38,9 +37,9 @@ class ItemCardWidget extends StatelessWidget {
                 : (onePerson.callType.toString() == "CallType.outgoing")
                 ? Icons.call_made
                 : Icons.call_missed,
-            size: 18,
+            size: 18,color:(onePerson.callType.toString() == "CallType.missed")?Colors.red:null ,
           ),
-          TextWidget(text: callTime, fontSize: 16),
+          TextWidget(text: callTime, fontSize: 16,color: (onePerson.callType.toString() == "CallType.missed")?Colors.red:null),
         ],
       ),
       trailing: IconButton(onPressed: () {

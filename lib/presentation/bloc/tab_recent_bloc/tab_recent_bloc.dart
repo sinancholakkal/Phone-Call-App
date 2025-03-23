@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:call_log/call_log.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
 part 'tab_recent_event.dart';
@@ -15,7 +16,7 @@ class TabRecentBloc extends Bloc<TabRecentEvent, TabRecentState> {
     on<GetCallLogsEvent>((event, emit) async {
       emit(GetCallLogsLoadingState());
       try {
-        //PermissionStatus status = await Permission.phone.request();
+         //await FlutterContacts.requestPermission();
         if (await Permission.phone.request().isGranted) {
           Iterable<CallLogEntry> entries = await CallLog.get();
 

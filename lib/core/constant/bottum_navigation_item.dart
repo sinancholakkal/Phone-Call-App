@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phone/presentation/pages/tab_contacts/tab_contacts.dart';
 import 'package:phone/presentation/pages/tab_recent/tab_recent.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -31,5 +32,5 @@ final List<Widget> tabPages = [
     TabRecent(),
     Center(child: Text("Favorites", style: TextStyle(fontSize: 20))),
     Center(child: Text("Add New Contact", style: TextStyle(fontSize: 20))),
-    Center(child: Text("Contacts List", style: TextStyle(fontSize: 20))),
+    TabContacts(),
   ];
