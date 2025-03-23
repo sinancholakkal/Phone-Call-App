@@ -15,6 +15,7 @@ class TabRecentBloc extends Bloc<TabRecentEvent, TabRecentState> {
     on<GetCallLogsEvent>((event, emit) async {
       emit(GetCallLogsLoadingState());
       try {
+        //PermissionStatus status = await Permission.phone.request();
         if (await Permission.phone.request().isGranted) {
           Iterable<CallLogEntry> entries = await CallLog.get();
 

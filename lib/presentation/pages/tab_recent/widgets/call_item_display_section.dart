@@ -121,6 +121,7 @@ class CallItemsDisplaySection extends StatelessWidget {
                             personName: personName,
                             onePerson: onePerson,
                             callTime: callTime,
+                            phoneNumber: onePerson.number!,
                           ),
                           //Expanding row---------------------------
                           ExpandableRow(isExpanded: isExpanded),

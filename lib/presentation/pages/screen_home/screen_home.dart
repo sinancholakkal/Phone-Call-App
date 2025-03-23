@@ -1,9 +1,12 @@
-  import 'package:flutter/material.dart';
+  import 'dart:developer';
+
+import 'package:flutter/material.dart';
   import 'package:flutter_bloc/flutter_bloc.dart' as bloc;
 import 'package:get/get.dart';
   import 'package:phone/core/constant/bottum_navigation_item.dart';
   import 'package:phone/core/theme/colors.dart';
   import 'package:phone/presentation/bloc/home_screen_bloc/home_screen_bloc.dart';
+import 'package:phone/presentation/bloc/tab_recent_bloc/tab_recent_bloc.dart';
 import 'package:phone/presentation/pages/screen_dialpad/screen_dialpad.dart';
   import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -43,8 +46,10 @@ import 'package:phone/presentation/pages/screen_dialpad/screen_dialpad.dart';
               ),
             ),
             body: SafeArea(bottom: false,child: tabPages[currentTab],),
-            floatingActionButton: FloatingActionButton(onPressed: (){
-              Get.to(()=>ScreenDialpad(),transition: Transition.downToUp);
+            floatingActionButton: FloatingActionButton(onPressed: ()async{
+              await Get.to(()=>ScreenDialpad(),transition: Transition.downToUp);
+              log("refreshed---------------------");
+              context.read<TabRecentBloc>().add(GetCallLogsEvent());
             },child: Icon(Icons.dialpad),),
           );
         },

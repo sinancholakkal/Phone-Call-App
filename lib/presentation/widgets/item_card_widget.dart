@@ -1,5 +1,7 @@
 import 'package:call_log/call_log.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:phone/presentation/bloc/dialer_screen_bloc/dialer_bloc.dart';
 import 'package:phone/presentation/widgets/text_widget.dart';
 
 class ItemCardWidget extends StatelessWidget {
@@ -9,11 +11,13 @@ class ItemCardWidget extends StatelessWidget {
     required this.personName,
     required this.onePerson,
     required this.callTime,
+    required this.phoneNumber
   });
   final int index;
   final String personName;
   final CallLogEntry onePerson;
   final String callTime;
+  final String phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,9 @@ class ItemCardWidget extends StatelessWidget {
           TextWidget(text: callTime, fontSize: 16),
         ],
       ),
-      trailing: IconButton(onPressed: () {}, icon: const Icon(Icons.phone)),
+      trailing: IconButton(onPressed: () {
+        context.read<DialerBloc>().add(MakeCallEvent(phone: phoneNumber, context: context));
+      }, icon: const Icon(Icons.phone)),
     );
   }
 }
