@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
 part 'tab_recent_event.dart';
 part 'tab_recent_state.dart';
+
 class TabRecentBloc extends Bloc<TabRecentEvent, TabRecentState> {
   TabRecentBloc() : super(TabRecentInitial()) {
     on<ExpandedIndexChangingEvent>((event, emit) {
@@ -16,32 +17,43 @@ class TabRecentBloc extends Bloc<TabRecentEvent, TabRecentState> {
       try {
         if (await Permission.phone.request().isGranted) {
           Iterable<CallLogEntry> entries = await CallLog.get();
-          
-          
+
           List<CallLogEntry> callLogs = entries.toList();
+
+          List<CallLogEntry> todayCalls = [];
+          List<CallLogEntry> yesterdayCalls = [];
+          List<CallLogEntry> olderCalls = [];
+          List<CallLogEntry> missedCalls = [];
           Map<String?, CallLogEntry> uniqueLogs = {};
+
+          DateTime now = DateTime.now();
+          DateTime todayStart = DateTime(now.year, now.month, now.day);
+          DateTime yesterdayStart = todayStart.subtract(Duration(days: 1));
 
           for (var log in callLogs) {
             String? key = log.number;
             if (key != null && key.isNotEmpty) {
-              uniqueLogs[key] = log;
+              if (!uniqueLogs.containsKey(key) ||
+                  (log.timestamp ?? 0) > (uniqueLogs[key]?.timestamp ?? 0)) {
+                uniqueLogs[key] = log;
+                if(log.callType.toString()=="CallType.missed")missedCalls.add(log);
+                DateTime callDate = DateTime.fromMillisecondsSinceEpoch(
+                  log.timestamp!,
+                );
+                if (callDate.isAfter(todayStart)) {
+                  todayCalls.add(log);
+                } else if (callDate.isAfter(yesterdayStart)) {
+                  yesterdayCalls.add(log);
+                } else {
+                  olderCalls.add(log);
+                }
+              }
             }
           }
 
           List<CallLogEntry> deduplicatedLogs = uniqueLogs.values.toList();
-          log("Fetched ${deduplicatedLogs.length} unique call logs");
-          if (deduplicatedLogs.isNotEmpty) {
-            log(deduplicatedLogs[0].number.toString());
-          }
-          if (deduplicatedLogs.length > 1) {
-            log(deduplicatedLogs[1].number.toString());
-          }
-          if (deduplicatedLogs.length > 2) {
-            log(deduplicatedLogs[2].number.toString());
-          }
-          log("==========www");
 
-          emit(GetCallLogsLoadedState(logs: deduplicatedLogs));
+          emit(GetCallLogsLoadedState(logs: deduplicatedLogs,todayCalls: todayCalls,yesterdayCalls: yesterdayCalls,olderCalls: olderCalls,missedCalls: missedCalls));
         } else {
           log("Call log permission denied");
         }

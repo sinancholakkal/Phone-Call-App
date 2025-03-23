@@ -12,5 +12,9 @@ class GetCallLogsLoadingState extends TabRecentState{}
 
 class GetCallLogsLoadedState extends TabRecentState{
   List<CallLogEntry> logs;
-  GetCallLogsLoadedState({required this.logs});
+  List<CallLogEntry> todayCalls;
+  List<CallLogEntry> yesterdayCalls;
+  List<CallLogEntry> olderCalls;
+  List<CallLogEntry>missedCalls;
+  GetCallLogsLoadedState({required this.logs,required this.todayCalls,required this.yesterdayCalls,required this.olderCalls,required this.missedCalls});
 }
