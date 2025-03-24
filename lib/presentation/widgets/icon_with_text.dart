@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class IconWIthTextWidget extends StatelessWidget {
-  final Icon icon;
+  final Widget icon;
   final String text;
   const IconWIthTextWidget({required this.icon, required this.text});
 
