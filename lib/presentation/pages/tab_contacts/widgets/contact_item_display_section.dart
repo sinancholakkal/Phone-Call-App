@@ -39,13 +39,14 @@ class ContactItemsDisplaySection extends StatelessWidget {
                   return Center(child: TextWidget(text: "No contacts"));
                 } else {
                   // Convert state.contacts to List<ContactInfo>
-                  // for (var c in state.contacts) {
-                  //   // log(c.displayName);
-                  //   // log(c.phones.length.toString());
-                  //   if(c.phones.isNotEmpty){
-                  //     log(c.phones.first.n);
-                  //   }
-                  // }
+                  for (var c in state.contacts) {
+                    // log(c.displayName);
+                    // log(c.phones.length.toString());
+                    // if(c.phones.isNotEmpty){
+                    //   log(c.phones.first.n);
+                    // }
+                    log("${c.name.first} == ${c.name.last}");
+                  }
                   final contacts =
                       state.contacts
                           .where(
@@ -58,7 +59,9 @@ class ContactItemsDisplaySection extends StatelessWidget {
                               displayName: contact.displayName,
                               image: contact.photoOrThumbnail,
                               isStared: contact.isStarred,
-                              phone: contact.phones
+                              phone: contact.phones,
+                              firstName: contact.name.first,
+                              lastName: contact.name.last
                             ),
                           ) // Map to ContactInfo
                           .toList();

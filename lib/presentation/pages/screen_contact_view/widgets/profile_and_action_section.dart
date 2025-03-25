@@ -37,7 +37,7 @@ class ProfileAndActionSection extends StatelessWidget {
                     : null,
           ),
           SizedBox(height: 10),
-          TextWidget(text: contact.displayName, fontSize: 30),
+          TextWidget(text: contact.displayName, fontSize: 22),
           SizedBox(height: 20),
 
           //Call and message icon buttons--------------

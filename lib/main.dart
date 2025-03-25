@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:phone/presentation/bloc/contact_edit_screen_bloc/contact_edit_screen_bloc.dart';
 import 'package:phone/presentation/bloc/dialer_screen_bloc/dialer_bloc.dart';
 import 'package:phone/presentation/bloc/home_screen_bloc/home_screen_bloc.dart';
 import 'package:phone/presentation/bloc/tab_contacts_bloc/tab_contacts_bloc.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => TabRecentBloc()),
         BlocProvider(create: (context)=> DialerBloc()),
         BlocProvider(create: (context)=> TabContactsBloc()),
+        BlocProvider(create: (context)=> ContactEditScreenBloc()),
       ],
       
       child: GetMaterialApp(
