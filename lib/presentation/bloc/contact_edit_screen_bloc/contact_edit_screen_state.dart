@@ -5,7 +5,8 @@ sealed class ContactEditScreenState {}
 
 final class ContactEditScreenInitial extends ContactEditScreenState {}
 class ImagePickLoadedState extends ContactEditScreenState{
-  final XFile? image;
-  ImagePickLoadedState({required this.image});
+  final Uint8List? imageByte;
+  ImagePickLoadedState({required this.imageByte});
 }
 class ImageInitialState extends ContactEditScreenState{}
+class ContactEditLoadedState extends ContactEditScreenState{}

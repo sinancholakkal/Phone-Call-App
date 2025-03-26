@@ -61,7 +61,9 @@ class ContactItemsDisplaySection extends StatelessWidget {
                               isStared: contact.isStarred,
                               phone: contact.phones,
                               firstName: contact.name.first,
-                              lastName: contact.name.last
+                              lastName: contact.name.last,
+
+                              contactId: contact.id
                             ),
                           ) // Map to ContactInfo
                           .toList();

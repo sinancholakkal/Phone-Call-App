@@ -26,5 +26,14 @@ class TabContactsBloc extends Bloc<TabContactsEvent, TabContactsState> {
       log("Somthing wrong while fetching all contacts $e");
      }
     });
+
+    on<FecthOneContactEvent>((event, emit)async {
+      try{
+        Contact? contact = await FlutterContacts.getContact(event.contactId,withAccounts: true,withPhoto: true,withProperties: true,withThumbnail: true,deduplicateProperties: true,withGroups: true);
+              emit(FetchOneContactLoaded(contact: contact!));
+      }catch(e){
+        log("Somthing issue while fetching one contact");
+      }
+    },);
   }
 }

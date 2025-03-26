@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_contacts/contact.dart';
 import 'package:phone/presentation/bloc/dialer_screen_bloc/dialer_bloc.dart';
 import 'package:phone/presentation/pages/tab_contacts/tab_contacts.dart';
 import 'package:phone/presentation/widgets/icon_with_text.dart';
@@ -11,10 +12,12 @@ class ProfileAndActionSection extends StatelessWidget {
     super.key,
     required this.contact,
     required this.color,
+    required this.contactInfo
   });
 
-  final ContactInfo contact;
+  final ContactInfo contactInfo;
   final Color color;
+  final Contact contact;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +26,12 @@ class ProfileAndActionSection extends StatelessWidget {
         children: [
           SizedBox(height: 20),
           CircleAvatar(
-            backgroundColor: (contact.image == null) ? color : null,
+            backgroundColor: (contact.photoOrThumbnail == null) ? color : null,
             radius: 100,
             backgroundImage:
-                (contact.image != null) ? MemoryImage(contact.image!) : null,
+                (contact.photoOrThumbnail != null) ? MemoryImage(contact.photoOrThumbnail!) : null,
             child:
-                (contact.image == null)
+                (contact.photoOrThumbnail == null)
                     ? TextWidget(
                       text: contact.displayName[0].toUpperCase(),
                       fontSize: 90,
@@ -49,7 +52,7 @@ class ProfileAndActionSection extends StatelessWidget {
                   onTap: () {
                     context.read<DialerBloc>().add(
                       MakeCallEvent(
-                        phone: contact.phone.first.number,
+                        phone: contact.phones.first.number,
                         context: context,
                       ),
                     );

@@ -17,8 +17,9 @@ class ContactInfo extends ISuspensionBean {
   final List<Phone>phone;
   final String firstName;
   final String lastName;
+  final String contactId;
 
-  ContactInfo({required this.displayName, required this.image,required this.isStared,required this.phone,required this.firstName,required this.lastName});
+  ContactInfo({required this.displayName, required this.image,required this.isStared,required this.phone,required this.firstName,required this.lastName,required this.contactId});
 
   @override
   String getSuspensionTag() => tagIndex ?? '';

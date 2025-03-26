@@ -9,3 +9,8 @@ class FetchAllContactsLoadedState extends TabContactsState{
   final List<Contact>contacts;
   FetchAllContactsLoadedState({required this.contacts});
 }
+
+class FetchOneContactLoaded extends TabContactsState{
+  Contact contact;
+  FetchOneContactLoaded({required this.contact});
+}
